@@ -23,7 +23,7 @@ This application requires a DeepSeek API key to function.
 
 ### Example `.env` file:
 ```
-VITE_DEEPSEEK_API_KEY=sk-5805ee144a584fe2a784b1276f03b630
+VITE_DEEPSEEK_API_KEY=sk-your-actual-api-key-here
 ```
 
 ### After creating `.env`:
