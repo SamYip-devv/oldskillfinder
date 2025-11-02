@@ -1,25 +1,31 @@
 import axios from 'axios'
 
-const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY
-
-if (!DEEPSEEK_API_KEY) {
-  throw new Error('VITE_DEEPSEEK_API_KEY is not set. Please create a .env file with your DeepSeek API key.')
-}
 const ADVISOR_MODEL = 'deepseek-chat'
 
-const advisorClient = axios.create({
-  baseURL: 'https://api.deepseek.com',
-  headers: {
-    'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-    'Content-Type': 'application/json'
+const getApiKey = () => {
+  const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY
+  if (!apiKey) {
+    throw new Error('DeepSeek API key is not configured. Please set VITE_DEEPSEEK_API_KEY environment variable in your deployment platform.')
   }
-})
+  return apiKey
+}
+
+const createAdvisorClient = () => {
+  return axios.create({
+    baseURL: 'https://api.deepseek.com',
+    headers: {
+      'Authorization': `Bearer ${getApiKey()}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
 
 export const analyzeWithContext = async (userMessage, userData, conversationHistory) => {
   try {
     const systemPrompt = createSystemPrompt(userData)
     const conversationContext = formatConversationHistory(conversationHistory)
     
+    const advisorClient = createAdvisorClient()
     const response = await advisorClient.post('/chat/completions', {
       model: ADVISOR_MODEL,
       messages: [

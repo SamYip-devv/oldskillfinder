@@ -1,19 +1,24 @@
 import axios from 'axios'
 
-const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY
-
-if (!DEEPSEEK_API_KEY) {
-  throw new Error('VITE_DEEPSEEK_API_KEY is not set. Please create a .env file with your DeepSeek API key.')
-}
 const EXTRACTION_MODEL = 'deepseek-chat'
 
-const extractionClient = axios.create({
-  baseURL: 'https://api.deepseek.com',
-  headers: {
-    'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-    'Content-Type': 'application/json'
+const getApiKey = () => {
+  const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY
+  if (!apiKey) {
+    throw new Error('DeepSeek API key is not configured. Please set VITE_DEEPSEEK_API_KEY environment variable in your deployment platform.')
   }
-})
+  return apiKey
+}
+
+const createExtractionClient = () => {
+  return axios.create({
+    baseURL: 'https://api.deepseek.com',
+    headers: {
+      'Authorization': `Bearer ${getApiKey()}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
 
 // Extract text from different file types
 export const extractTextFromFile = async (file, content, testType) => {
@@ -26,6 +31,7 @@ export const extractTextFromFile = async (file, content, testType) => {
     // For images and PDFs, extract text
     const extractionPrompt = createExtractionPrompt(testType)
     
+    const extractionClient = createExtractionClient()
     const response = await extractionClient.post('/chat/completions', {
       model: EXTRACTION_MODEL,
       messages: [

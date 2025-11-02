@@ -1,20 +1,25 @@
 import axios from 'axios'
 import { generateILPRecommendations } from './ilpRecommender'
 
-const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY
-
-if (!DEEPSEEK_API_KEY) {
-  throw new Error('VITE_DEEPSEEK_API_KEY is not set. Please create a .env file with your DeepSeek API key.')
-}
 const ANALYSIS_MODEL = 'deepseek-chat'
 
-const analysisClient = axios.create({
-  baseURL: 'https://api.deepseek.com',
-  headers: {
-    'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-    'Content-Type': 'application/json'
+const getApiKey = () => {
+  const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY
+  if (!apiKey) {
+    throw new Error('DeepSeek API key is not configured. Please set VITE_DEEPSEEK_API_KEY environment variable in your deployment platform.')
   }
-})
+  return apiKey
+}
+
+const createAnalysisClient = () => {
+  return axios.create({
+    baseURL: 'https://api.deepseek.com',
+    headers: {
+      'Authorization': `Bearer ${getApiKey()}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
 
 // Helper function to add ILP recommendations to analysis result
 const addILPRecommendations = async (analysisResult, structuredData, userDescription, undergraduateDegree) => {
@@ -112,6 +117,7 @@ export const generateComprehensiveAnalysis = async (structuredData, userDescript
   try {
     const prompt = createComprehensivePrompt(structuredData, userDescription, undergraduateDegree)
 
+    const analysisClient = createAnalysisClient()
     const response = await analysisClient.post('/chat/completions', {
       model: ANALYSIS_MODEL,
       messages: [

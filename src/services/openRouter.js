@@ -1,19 +1,24 @@
 import axios from 'axios'
 
-const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY
-
-if (!DEEPSEEK_API_KEY) {
-  throw new Error('VITE_DEEPSEEK_API_KEY is not set. Please create a .env file with your DeepSeek API key.')
-}
 const MODEL_NAME = 'deepseek-chat'
 
-const deepseekClient = axios.create({
-  baseURL: 'https://api.deepseek.com',
-  headers: {
-    'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-    'Content-Type': 'application/json'
+const getApiKey = () => {
+  const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY
+  if (!apiKey) {
+    throw new Error('DeepSeek API key is not configured. Please set VITE_DEEPSEEK_API_KEY environment variable.')
   }
-})
+  return apiKey
+}
+
+const createDeepseekClient = () => {
+  return axios.create({
+    baseURL: 'https://api.deepseek.com',
+    headers: {
+      'Authorization': `Bearer ${getApiKey()}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
 
 const createAnalysisPrompt = (uploadedTests, userDescription = '', undergraduateDegree = '') => {
   let prompt = `You are an expert skills development coach specializing in helping undergraduate students build complementary skills alongside their academic studies. You understand that students have already invested 3-4 years in their current degree and want to enhance their opportunities without completely changing direction.

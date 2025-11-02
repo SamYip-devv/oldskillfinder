@@ -1,18 +1,22 @@
 import axios from 'axios'
 
-const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY
-
-if (!DEEPSEEK_API_KEY) {
-  throw new Error('VITE_DEEPSEEK_API_KEY is not set. Please create a .env file with your DeepSeek API key.')
+const getApiKey = () => {
+  const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY
+  if (!apiKey) {
+    throw new Error('DeepSeek API key is not configured. Please set VITE_DEEPSEEK_API_KEY environment variable in your deployment platform.')
+  }
+  return apiKey
 }
 
-const deepseekClient = axios.create({
-  baseURL: 'https://api.deepseek.com',
-  headers: {
-    'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-    'Content-Type': 'application/json'
-  }
-})
+const createDeepseekClient = () => {
+  return axios.create({
+    baseURL: 'https://api.deepseek.com',
+    headers: {
+      'Authorization': `Bearer ${getApiKey()}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
 
 export const generatePersonalizedLearningMap = async (skill, userProfile, personalityData) => {
   const prompt = `You are an expert career coach and learning path designer. Based on the user's personality profile and their selected skill, create a comprehensive, personalized learning roadmap.
@@ -88,6 +92,7 @@ Guidelines:
 Do not include any text outside the JSON structure.`
 
   try {
+    const deepseekClient = createDeepseekClient()
     const response = await deepseekClient.post('/chat/completions', {
       model: 'deepseek-chat',
       messages: [
