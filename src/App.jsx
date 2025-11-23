@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
-import CourseBrowser from './components/CourseBrowser'
+import CourseBrowser, { sampleCourses } from './components/CourseBrowser'
+import CampusMap from './components/CampusMap'
 import DuoMobile from './components/DuoMobile'
 import LUChatbot from './components/LUChatbot'
+import { MapPin } from 'lucide-react'
 
 function App() {
   const [showDuoMobile, setShowDuoMobile] = useState(false)
   const [showChatbot, setShowChatbot] = useState(false)
+  const [showCampusMap, setShowCampusMap] = useState(false)
 
   useEffect(() => {
     const handleOpenDuoMobile = () => {
@@ -78,12 +81,33 @@ function App() {
                 </a>
               </nav>
             </div>
+
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <h2 className="text-sm font-semibold text-gray-700 uppercase mb-3">Campus</h2>
+              <nav className="space-y-1">
+                <button
+                  onClick={() => setShowCampusMap(!showCampusMap)}
+                  className={`w-full text-left block px-3 py-2 text-sm rounded flex items-center space-x-2 ${
+                    showCampusMap
+                      ? 'bg-orange-50 text-orange-700'
+                      : 'text-gray-700 hover:bg-orange-50 hover:text-orange-700'
+                  }`}
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Campus Map</span>
+                </button>
+              </nav>
+            </div>
           </div>
         </aside>
         
         {/* Main Content */}
         <main className="flex-1 container mx-auto px-6 py-6">
-          <CourseBrowser />
+          {showCampusMap ? (
+            <CampusMap courses={sampleCourses} />
+          ) : (
+            <CourseBrowser />
+          )}
         </main>
       </div>
 
