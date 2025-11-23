@@ -75,7 +75,7 @@ const DuoMobile = ({ onClose, onVerify }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-2xl max-w-md w-full">
         {/* Duo Mobile Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white p-6 rounded-t-lg">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
               <div className="bg-white bg-opacity-20 p-2 rounded">
@@ -103,8 +103,8 @@ const DuoMobile = ({ onClose, onVerify }) => {
             <>
               {/* Phone Icon */}
               <div className="flex justify-center mb-6">
-                <div className="bg-blue-50 rounded-full p-6">
-                  <Smartphone className="w-16 h-16 text-blue-600" />
+                <div className="bg-orange-50 rounded-full p-6">
+                  <Smartphone className="w-16 h-16 text-orange-600" />
                 </div>
               </div>
 
@@ -132,7 +132,7 @@ const DuoMobile = ({ onClose, onVerify }) => {
                       onChange={(e) => handleCodeChange(index, e.target.value)}
                       onKeyDown={(e) => handleKeyDown(index, e)}
                       onPaste={handlePaste}
-                      className="w-12 h-14 text-center text-2xl font-bold border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                      className="w-12 h-14 text-center text-2xl font-bold border-2 border-gray-300 rounded-lg focus:border-orange-600 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
                     />
                   ))}
                 </div>
@@ -145,7 +145,7 @@ const DuoMobile = ({ onClose, onVerify }) => {
               <button
                 onClick={handleVerify}
                 disabled={isVerifying || code.join('').length !== 6}
-                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
+                className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
               >
                 {isVerifying ? (
                   <>
@@ -164,7 +164,7 @@ const DuoMobile = ({ onClose, onVerify }) => {
               <div className="mt-4 text-center">
                 <p className="text-xs text-gray-500">
                   Don't have access to your device?{' '}
-                  <a href="#" className="text-blue-600 hover:underline">
+                  <a href="#" className="text-orange-600 hover:underline">
                     Use a backup code
                   </a>
                 </p>

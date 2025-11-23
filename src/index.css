@@ -32,7 +32,7 @@
   }
   
   .btn-primary {
-    @apply bg-moodle-blue hover:bg-moodle-blue-dark text-white font-medium px-4 py-2 rounded border border-moodle-blue-dark transition-colors duration-150;
+    @apply bg-orange-600 hover:bg-orange-700 text-white font-medium px-4 py-2 rounded border border-orange-700 transition-colors duration-150;
   }
   
   .btn-secondary {
@@ -44,7 +44,7 @@
   }
   
   .moodle-block-header {
-    @apply bg-moodle-blue-light border-b border-gray-300 px-4 py-2 font-semibold text-gray-800;
+    @apply bg-orange-50 border-b border-gray-300 px-4 py-2 font-semibold text-gray-800;
   }
   
   .moodle-block-content {

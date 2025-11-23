@@ -8,16 +8,16 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#e6f2f8',
-          100: '#cce5f1',
-          200: '#99cbe3',
-          300: '#66b1d5',
-          400: '#3397c7',
-          500: '#0f6cbf', // Moodle blue
-          600: '#0c5699',
-          700: '#094073',
-          800: '#062b4d',
-          900: '#031526',
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316', // Orange
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
         },
         accent: {
           50: '#f5f5f5',
@@ -25,16 +25,16 @@ export default {
           200: '#bdbdbd',
           300: '#9e9e9e',
           400: '#757575',
-          500: '#616161', // Moodle gray
+          500: '#616161',
           600: '#424242',
           700: '#212121',
           800: '#1a1a1a',
           900: '#0f0f0f',
         },
         moodle: {
-          blue: '#0f6cbf',
-          'blue-dark': '#1f4e79',
-          'blue-light': '#e6f2f8',
+          blue: '#f97316', // Orange
+          'blue-dark': '#ea580c',
+          'blue-light': '#fff7ed',
           gray: '#f5f5f5',
           'gray-dark': '#333333',
           border: '#d0d0d0',

@@ -11,7 +11,6 @@ const sampleCourses = [
     duration: '8 weeks',
     students: 1250,
     rating: 4.7,
-    price: 'Free',
     description: 'Learn the fundamentals of HTML, CSS, and JavaScript to build modern web applications.',
     image: '🌐'
   },
@@ -23,7 +22,6 @@ const sampleCourses = [
     duration: '6 weeks',
     students: 890,
     rating: 4.5,
-    price: '$49',
     description: 'Develop strategic thinking skills and learn to create effective business plans.',
     image: '📊'
   },
@@ -35,7 +33,6 @@ const sampleCourses = [
     duration: '4 weeks',
     students: 2100,
     rating: 4.8,
-    price: 'Free',
     description: 'Master SEO, social media marketing, and content creation strategies.',
     image: '📱'
   },
@@ -47,7 +44,6 @@ const sampleCourses = [
     duration: '10 weeks',
     students: 1650,
     rating: 4.9,
-    price: '$79',
     description: 'Learn data analysis, visualization, and machine learning using Python.',
     image: '📈'
   },
@@ -59,7 +55,6 @@ const sampleCourses = [
     duration: '5 weeks',
     students: 650,
     rating: 4.6,
-    price: '$39',
     description: 'Develop your writing skills through exercises and peer feedback.',
     image: '✍️'
   },
@@ -71,7 +66,6 @@ const sampleCourses = [
     duration: '12 weeks',
     students: 3200,
     rating: 4.7,
-    price: 'Free',
     description: 'Explore the fundamentals of human behavior and mental processes.',
     image: '🧠'
   }
@@ -95,7 +89,7 @@ const CourseBrowser = () => {
       {/* Filters */}
       <div className="moodle-block mb-6">
         <div className="moodle-block-header flex items-center justify-between">
-          <h2 className="text-lg font-bold text-moodle-blue-dark flex items-center space-x-2">
+          <h2 className="text-lg font-bold text-orange-700 flex items-center space-x-2">
             <Filter className="w-5 h-5" />
             <span>Filter Courses</span>
           </h2>
@@ -108,7 +102,7 @@ const CourseBrowser = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded border text-sm transition-colors ${
                   selectedCategory === category
-                    ? 'bg-moodle-blue text-white border-moodle-blue'
+                    ? 'bg-orange-600 text-white border-orange-600'
                     : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                 }`}
               >
@@ -122,7 +116,7 @@ const CourseBrowser = () => {
               placeholder="Search courses by title or description..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-moodle-blue"
+              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-600"
             />
           </div>
         </div>
@@ -130,7 +124,7 @@ const CourseBrowser = () => {
 
       {/* Course Grid */}
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xl font-bold text-moodle-blue-dark">
+        <h2 className="text-xl font-bold text-orange-700">
           {selectedCategory} ({filteredCourses.length} courses)
         </h2>
       </div>
@@ -144,12 +138,12 @@ const CourseBrowser = () => {
               
               {/* Course Info */}
               <div className="mb-3">
-                <span className="text-xs font-semibold text-moodle-blue bg-moodle-blue-light px-2 py-1 rounded">
+                <span className="text-xs font-semibold text-orange-700 bg-orange-50 px-2 py-1 rounded">
                   {course.category}
                 </span>
               </div>
               
-              <h3 className="text-lg font-bold text-moodle-blue-dark mb-2">
+              <h3 className="text-lg font-bold text-orange-700 mb-2">
                 {course.title}
               </h3>
               
@@ -177,11 +171,8 @@ const CourseBrowser = () => {
                 </div>
               </div>
               
-              {/* Price and Enroll */}
-              <div className="flex items-center justify-between pt-3 border-t border-gray-200">
-                <span className="text-lg font-bold text-moodle-blue">
-                  {course.price}
-                </span>
+              {/* Enroll Button */}
+              <div className="flex items-center justify-end pt-3 border-t border-gray-200">
                 <button className="btn-primary text-sm flex items-center space-x-1">
                   <span>View Details</span>
                   <ChevronRight className="w-4 h-4" />
