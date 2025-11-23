@@ -14,6 +14,7 @@ const Header = ({ onReturnHome }) => {
             <div>
               <h1 className="text-xl font-bold text-orange-700">LUOODLE</h1>
               <p className="text-xs text-gray-600">College Intranet - Course Browser</p>
+              <p className="text-xs text-gray-500 italic">made by the incubator team in 30 minutes</p>
             </div>
           </div>
           
