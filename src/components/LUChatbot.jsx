@@ -24,7 +24,7 @@ const LUChatbot = ({ onClose }) => {
   const [messages, setMessages] = useState([
     {
       type: 'bot',
-      content: 'Hello! I\'m LU Chatgpt, your AI assistant. How can I help you today?'
+      content: 'Hello Incubator team, thank you for giving me life'
     }
   ])
   const [input, setInput] = useState('')
