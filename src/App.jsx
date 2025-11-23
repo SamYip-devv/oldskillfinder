@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
 import CourseBrowser, { sampleCourses } from './components/CourseBrowser'
 import CampusMap from './components/CampusMap'
+import Library from './components/Library'
 import DuoMobile from './components/DuoMobile'
 import LUChatbot from './components/LUChatbot'
-import { MapPin } from 'lucide-react'
+import { MapPin, BookOpen } from 'lucide-react'
 
 function App() {
   const [showDuoMobile, setShowDuoMobile] = useState(false)
   const [showChatbot, setShowChatbot] = useState(false)
   const [showCampusMap, setShowCampusMap] = useState(false)
+  const [showLibrary, setShowLibrary] = useState(false)
 
   useEffect(() => {
     const handleOpenDuoMobile = () => {
@@ -86,7 +88,10 @@ function App() {
               <h2 className="text-sm font-semibold text-gray-700 uppercase mb-3">Campus</h2>
               <nav className="space-y-1">
                 <button
-                  onClick={() => setShowCampusMap(!showCampusMap)}
+                  onClick={() => {
+                    setShowCampusMap(!showCampusMap)
+                    setShowLibrary(false)
+                  }}
                   className={`w-full text-left block px-3 py-2 text-sm rounded flex items-center space-x-2 ${
                     showCampusMap
                       ? 'bg-orange-50 text-orange-700'
@@ -95,6 +100,20 @@ function App() {
                 >
                   <MapPin className="w-4 h-4" />
                   <span>Campus Map</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setShowLibrary(!showLibrary)
+                    setShowCampusMap(false)
+                  }}
+                  className={`w-full text-left block px-3 py-2 text-sm rounded flex items-center space-x-2 ${
+                    showLibrary
+                      ? 'bg-orange-50 text-orange-700'
+                      : 'text-gray-700 hover:bg-orange-50 hover:text-orange-700'
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4" />
+                  <span>Library</span>
                 </button>
               </nav>
             </div>
@@ -105,6 +124,8 @@ function App() {
         <main className="flex-1 container mx-auto px-6 py-6">
           {showCampusMap ? (
             <CampusMap courses={sampleCourses} />
+          ) : showLibrary ? (
+            <Library />
           ) : (
             <CourseBrowser />
           )}
