@@ -37,11 +37,49 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-100">
       <Header />
       
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
+      <div className="flex flex-1">
+        {/* Left Sidebar - Moodle style */}
+        <aside className="w-64 bg-white border-r border-gray-300 min-h-[calc(100vh-120px)]">
+          <div className="p-4">
+            <h2 className="text-sm font-semibold text-gray-700 uppercase mb-3">Navigation</h2>
+            <nav className="space-y-1">
+              <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-moodle-blue-light hover:text-moodle-blue rounded">
+                Dashboard
+              </a>
+              <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-moodle-blue-light hover:text-moodle-blue rounded">
+                Personality Tests
+              </a>
+              <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-moodle-blue-light hover:text-moodle-blue rounded">
+                Career Recommendations
+              </a>
+              <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-moodle-blue-light hover:text-moodle-blue rounded">
+                Learning Paths
+              </a>
+              <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-moodle-blue-light hover:text-moodle-blue rounded">
+                Settings
+              </a>
+            </nav>
+            
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <h2 className="text-sm font-semibold text-gray-700 uppercase mb-3">Quick Links</h2>
+              <nav className="space-y-1">
+                <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-moodle-blue-light hover:text-moodle-blue rounded">
+                  Help & Support
+                </a>
+                <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-moodle-blue-light hover:text-moodle-blue rounded">
+                  About
+                </a>
+              </nav>
+            </div>
+          </div>
+        </aside>
+        
+        {/* Main Content */}
+        <main className="flex-1 container mx-auto px-6 py-6">
+          <div className="max-w-5xl">
           {/* Pathway Choice - Show first */}
           {!pathway && !recommendations && (
             <PathwayChoice onChoosePathway={setPathway} />
@@ -49,16 +87,15 @@ function App() {
 
           {/* Hero Section - Only show after choosing deep pathway */}
           {pathway === 'deep' && !recommendations && (
-            <div className="text-center mb-12 animate-fade-in">
-              <div className="flex items-center justify-center mb-4">
-                <Sparkles className="w-8 h-8 text-primary-500 mr-2" />
-                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-                  Build Your Skill Stack
-                </h1>
+            <div className="moodle-block mb-6">
+              <div className="moodle-block-header">
+                <h1 className="text-2xl font-bold text-moodle-blue-dark">Build Your Skill Stack</h1>
               </div>
-              <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Upload your personality tests and discover skills that complement your undergraduate degree. Build a unique skillset that sets you apart.
-              </p>
+              <div className="moodle-block-content">
+                <p className="text-gray-700">
+                  Upload your personality tests and discover skills that complement your undergraduate degree. Build a unique skillset that sets you apart.
+                </p>
+              </div>
             </div>
           )}
 
@@ -105,8 +142,9 @@ function App() {
               onBack={() => setShowAIAdvisor(false)}
             />
           )}
-        </div>
-      </main>
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
