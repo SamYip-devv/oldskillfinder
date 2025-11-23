@@ -36,9 +36,14 @@ function App() {
     // You can add additional logic here after successful verification
   }
 
+  const handleReturnHome = () => {
+    setShowCampusMap(false)
+    setShowLibrary(false)
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      <Header />
+      <Header onReturnHome={handleReturnHome} />
       
       <div className="flex flex-1">
         {/* Left Sidebar - Course Categories */}
@@ -46,9 +51,12 @@ function App() {
           <div className="p-4">
             <h2 className="text-sm font-semibold text-gray-700 uppercase mb-3">Course Categories</h2>
             <nav className="space-y-1">
-              <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-700 rounded">
+              <button
+                onClick={handleReturnHome}
+                className="w-full text-left block px-3 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-700 rounded"
+              >
                 All Courses
-              </a>
+              </button>
               <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-700 rounded">
                 Computer Science
               </a>
@@ -72,9 +80,12 @@ function App() {
             <div className="mt-6 pt-6 border-t border-gray-200">
               <h2 className="text-sm font-semibold text-gray-700 uppercase mb-3">My Learning</h2>
               <nav className="space-y-1">
-                <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-700 rounded">
+                <button
+                  onClick={handleReturnHome}
+                  className="w-full text-left block px-3 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-700 rounded"
+                >
                   Enrolled Courses
-                </a>
+                </button>
                 <a href="#" className="block px-3 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-700 rounded">
                   Completed
                 </a>
