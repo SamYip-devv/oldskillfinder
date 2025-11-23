@@ -1,5 +1,5 @@
 import React from 'react'
-import { BookOpen, Home, User, Search } from 'lucide-react'
+import { BookOpen, Home, User, Search, Shield } from 'lucide-react'
 
 const Header = () => {
   return (
@@ -12,7 +12,7 @@ const Header = () => {
               <BookOpen className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-moodle-blue-dark">Course Browser</h1>
+              <h1 className="text-xl font-bold text-moodle-blue-dark">LUOODLE</h1>
               <p className="text-xs text-gray-600">Browse and Enroll in Courses</p>
             </div>
           </div>
@@ -39,6 +39,16 @@ const Header = () => {
               <User className="w-4 h-4" />
               <span>My Courses</span>
             </a>
+            <button
+              onClick={() => {
+                const event = new CustomEvent('openDuoMobile')
+                window.dispatchEvent(event)
+              }}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium flex items-center space-x-1 transition-colors"
+            >
+              <Shield className="w-4 h-4" />
+              <span>Duo Mobile</span>
+            </button>
           </nav>
         </div>
         

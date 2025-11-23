@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
 import CourseBrowser from './components/CourseBrowser'
+import DuoMobile from './components/DuoMobile'
 
 function App() {
+  const [showDuoMobile, setShowDuoMobile] = useState(false)
+
+  useEffect(() => {
+    const handleOpenDuoMobile = () => {
+      setShowDuoMobile(true)
+    }
+
+    window.addEventListener('openDuoMobile', handleOpenDuoMobile)
+    return () => {
+      window.removeEventListener('openDuoMobile', handleOpenDuoMobile)
+    }
+  }, [])
+
+  const handleDuoVerify = () => {
+    console.log('Duo Mobile verification successful')
+    // You can add additional logic here after successful verification
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       <Header />
@@ -58,6 +77,14 @@ function App() {
           <CourseBrowser />
         </main>
       </div>
+
+      {/* Duo Mobile 2FA Modal */}
+      {showDuoMobile && (
+        <DuoMobile
+          onClose={() => setShowDuoMobile(false)}
+          onVerify={handleDuoVerify}
+        />
+      )}
     </div>
   )
 }
